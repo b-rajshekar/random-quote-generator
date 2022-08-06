@@ -11,7 +11,6 @@ function randomQuote() {
     quoteBtn.innerHTML = "Loading...";
     //fetching random quotes/data from the API and parsing it into JavaScript object
     fetch("https://api.quotable.io/random").then(res => res.json()).then(result =>{
-        console.log(result);
         quoteText.innerHTML = result.content;
         authorName.innerHTML = result.author;
         quoteBtn.innerHTML = "New Quote";
@@ -28,6 +27,11 @@ copyBtn.addEventListener("click", ()=> {
     //copying the quote text on copyBtn click
     //writeText() property writes the specified text string to the system clipboard.
     navigator.clipboard.writeText(quoteText.innerText);
+});
+
+twitterBtn.addEventListener("click", ()=> {
+    let tweetUrl = `https://twitter.com/intent/tweet?url=${quoteText.innerHTML}`;
+    window.open(tweetUrl);
 });
 
 quoteBtn.addEventListener("click", randomQuote);
